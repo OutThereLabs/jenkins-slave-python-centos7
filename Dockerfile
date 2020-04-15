@@ -8,4 +8,12 @@ RUN yum groupinstall -y 'Development Tools' &&\
     python3 -m pip install --upgrade pip && \
     python3 -m pip install bzt virtualenv
 
+COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
+
+RUN INSTALL_PKGS="google-chrome-stable" && \
+    yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
+    rpm -V  $INSTALL_PKGS && \
+    yum clean all  && \
+    localedef -f UTF-8 -i en_US en_US.UTF-8
+
 USER 1001
