@@ -10,7 +10,7 @@ RUN yum groupinstall -y 'Development Tools' &&\
 
 COPY google-chrome.repo /etc/yum.repos.d/google-chrome.repo
 
-RUN INSTALL_PKGS="google-chrome-stable" && \
+RUN INSTALL_PKGS="google-chrome-stable chromedriver" && \
     yum -y --setopt=tsflags=nodocs install $INSTALL_PKGS && \
     rpm -V  $INSTALL_PKGS && \
     yum clean all  && \
